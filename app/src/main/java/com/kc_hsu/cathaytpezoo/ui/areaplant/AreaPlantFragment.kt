@@ -70,10 +70,18 @@ class AreaPlantFragment : BaseFragment<AreaPlantFragmentBinding>(), AreaPlantCon
     }
 
     override fun showRelatedPlantList(list: List<AreaPlantResponseBody.Result.ResultItem>) {
+        if (list.isEmpty()) {
+            binding.areaPlantListLayout.isNoPlant = true
+            return
+        }
+
+        // Filter out duplicated element
+        val filterList = list.distinctBy { it.FNameCh }
+
         with(binding.areaPlantListLayout.rvPlantArea) {
             ViewCompat.setNestedScrollingEnabled(this, false)
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            adapter = AreaPlantItemRecyclerViewAdapter(list, this@AreaPlantFragment)
+            adapter = AreaPlantItemRecyclerViewAdapter(filterList, this@AreaPlantFragment)
         }
     }
 

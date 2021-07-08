@@ -29,4 +29,5 @@
     <string name="error_network_fail">請確認您的網路連線</string>
     <string name="retry">重試</string>
     <string name="browse">前往網頁</string>
+    <string name="area_plant_no_plant">無植物資料</string>
 </resources>

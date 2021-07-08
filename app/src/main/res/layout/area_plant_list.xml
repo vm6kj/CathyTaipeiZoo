@@ -11,6 +11,10 @@
             name="isError"
             type="Boolean" />
 
+        <variable
+            name="isNoPlant"
+            type="Boolean" />
+
         <import type="android.view.View" />
     </data>
 
@@ -38,6 +42,15 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="@{isLoading ? View.VISIBLE : View.INVISIBLE}" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_no_plant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/area_plant_no_plant"
+            android:visibility="@{isNoPlant ? View.VISIBLE : View.INVISIBLE}" />
 
     </RelativeLayout>
 

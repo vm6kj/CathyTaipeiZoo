@@ -13,6 +13,7 @@
     <string name="area_plant_title_en_default">English name</string>
     <string name="area_plant_aka_default">Also Known As</string>
     <string name="area_plant_list_title">Plants Information</string>
+    <string name="area_plant_no_plant">No plant info.</string>
 
     <string name="plant_detail_intro_title">Plants Introduction</string>
     <string name="plant_detail_aka">Also know as</string>
