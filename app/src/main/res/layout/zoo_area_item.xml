@@ -116,6 +116,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintStart_toEndOf="@+id/glIvTv"
+            app:layout_constraintEnd_toStartOf="@+id/glTvArrow"
             app:layout_constraintTop_toBottomOf="@+id/tv_info_peek"
             app:layout_constraintVertical_bias="1.0" />
 
