@@ -78,11 +78,13 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{zooArea.eName, default=@string/zoo_area_title_default}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintRight_toLeftOf="@+id/glTvArrow"
+            app:layout_constraintEnd_toStartOf="@+id/glTvArrow"
             app:layout_constraintStart_toEndOf="@+id/glIvTv"
             app:layout_constraintTop_toBottomOf="@+id/guidelineTop" />
 
@@ -108,6 +110,8 @@
             android:drawableStart="@drawable/ic_close_date"
             android:drawableLeft="@drawable/ic_close_date"
             android:drawablePadding="@dimen/size_8"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{TextUtils.isEmpty(zooArea.eMemo) ? @string/zoo_area_closed_info_default : zooArea.eMemo, default=@string/zoo_area_closed_info_default}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
