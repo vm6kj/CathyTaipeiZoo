@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="areaPlant"
+            type="com.kc_hsu.cathaytpezoo.data.responsebody.AreaPlantResponseBody.Result.ResultItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/size_8">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{areaPlant.FNameCh, default=@string/area_plant_title_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:text="@{areaPlant.FNameEn, default=@string/area_plant_title_en_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_18"
+            android:text="@string/plant_detail_aka"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:text="@{areaPlant.FAlsoKnown, default=@string/plant_detail_aka_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_18"
+            android:text="@string/plant_detail_intro"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:text="@{areaPlant.FBrief, default=@string/plant_detail_intro_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_18"
+            android:text="@string/plant_detail_recognition"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:text="@{areaPlant.FFeature, default=@string/plant_detail_recognition_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_18"
+            android:text="@string/plant_detail_functionality"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:text="@{areaPlant.FFunctionAndApplication, default=@string/plant_detail_functionality_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_18"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plant_detail_last_update"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{areaPlant.FUpdate, default=@string/plant_detail_last_update_default}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isError"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                android:name="com.kc_hsu.cathaytpezoo.zooarea.ZooAreaItemFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.zooarea.ZooAreaListFragment">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_zoo_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <include
+                    android:id="@+id/retry_view_layout"
+                    layout="@layout/retry_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="@{isError ? View.VISIBLE : View.INVISIBLE}" />
+
+                <include
+                    android:id="@+id/loading_view_layout"
+                    layout="@layout/loading_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="@{isLoading ? View.VISIBLE : View.INVISIBLE}" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

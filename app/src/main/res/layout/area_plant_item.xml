@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="areaPlant"
+            type="com.kc_hsu.cathaytpezoo.data.responsebody.AreaPlantResponseBody.Result.ResultItem" />
+
+        <variable
+            name="clickListener"
+            type="com.kc_hsu.cathaytpezoo.ui.TpeZooClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/area_plant_item_height"
+        android:onClick="@{() -> clickListener.onListItemClicked(areaPlant)}"
+        android:padding="@dimen/area_plant_item_padding"
+        app:cardCornerRadius="@dimen/cardview_corner">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_main_photo"
+                android:layout_width="@dimen/area_plant_square_iv_length"
+                android:layout_height="@dimen/area_plant_square_iv_length"
+                android:padding="@dimen/area_plant_item_padding"
+                android:scaleType="centerCrop"
+                app:error="@{@drawable/ic_flower}"
+                app:imageUrl="@{areaPlant.fPic01URL}"
+                app:placeholder="@{@drawable/ic_flower}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/iv_arrow"
+                android:layout_toLeftOf="@+id/iv_arrow"
+                android:layout_toEndOf="@+id/iv_main_photo"
+                android:layout_toRightOf="@+id/iv_arrow"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{areaPlant.FNameCh, default=@string/area_plant_title_default}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_aka"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_toStartOf="@+id/iv_arrow"
+                android:layout_toLeftOf="@+id/iv_arrow"
+                android:layout_toEndOf="@+id/iv_main_photo"
+                android:layout_toRightOf="@+id/iv_arrow"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{areaPlant.fAlsoKnown, default=@string/area_plant_aka_default}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <ImageView
+                android:id="@+id/iv_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/arrow_content_dsc"
+                android:src="@drawable/arrow_indicator" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

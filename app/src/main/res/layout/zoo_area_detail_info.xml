@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="zooArea"
+            type="com.kc_hsu.cathaytpezoo.data.responsebody.ZooAreaResponseBody.Result.ResultItem" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:text="@{zooArea.eInfo, default=@string/zoo_area_info_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_closed_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_info"
+            android:layout_marginTop="@dimen/size_18"
+            android:drawableStart="@drawable/ic_close_date"
+            android:drawableLeft="@drawable/ic_close_date"
+            android:drawablePadding="@dimen/size_8"
+            android:text="@{TextUtils.isEmpty(zooArea.eMemo) ? @string/zoo_area_closed_info_default : zooArea.eMemo, default=@string/zoo_area_closed_info_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_closed_info"
+            android:layout_marginTop="@dimen/size_8"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:drawableStart="@drawable/ic_location_on"
+                android:drawableLeft="@drawable/ic_location_on"
+                android:drawablePadding="@dimen/size_8"
+                android:text="@{TextUtils.isEmpty(zooArea.eCategory) ? @string/zoo_area_category_default : zooArea.eCategory, default=@string/zoo_area_category_default}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:gravity="end"
+                android:text="@string/browse"
+                app:hyperLink="@{zooArea.eURL}" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

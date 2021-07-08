@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">台北市立動物園</string>
+    <string name="zoo_area_title_default">展區名稱</string>
+    <string name="zoo_area_info_peek_default">簡短內容</string>
+    <string name="zoo_area_info_default">內容</string>
+    <string name="zoo_area_closed_info_default">未提供</string>
+    <string name="zoo_area_item_iv_content_dsc">展區圖片</string>
+    <string name="area_plant_title_default">植物名稱</string>
+    <string name="area_plant_title_en_default">英文名稱</string>
+    <string name="area_plant_aka_default">別名</string>
+    <string name="area_plant_list_title">植物資料</string>
+    <string name="plant_detail_intro_title">介紹</string>
+    <string name="plant_detail_aka">別名</string>
+    <string name="plant_detail_aka_default">別名內容</string>
+    <string name="plant_detail_intro">簡介</string>
+    <string name="plant_detail_intro_default">簡介內容</string>
+    <string name="plant_detail_recognition">辨認方式</string>
+    <string name="plant_detail_recognition_default">辨認方式內容</string>
+    <string name="plant_detail_functionality">功能性</string>
+    <string name="plant_detail_functionality_default">功能性內容</string>
+    <string name="plant_detail_last_update">最後更新：</string>
+    <string name="plant_detail_last_update_default">未提供</string>
+    <string name="drawer_menu_theme">主題</string>
+    <string name="theme_switch">切換</string>
+    <string name="theme_light_mode">主題：淺色</string>
+    <string name="theme_dark_mode">主題：深色</string>
+    <string name="pb_loading">載入中…</string>
+    <string name="error_network_fail">請確認您的網路連線</string>
+    <string name="retry">重試</string>
+    <string name="browse">前往網頁</string>
+</resources>

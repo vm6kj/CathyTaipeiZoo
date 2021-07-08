@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_8">8dp</dimen>
+    <dimen name="size_16">16dp</dimen>
+    <dimen name="size_18">18dp</dimen>
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="size_150">150dp</dimen>
+    <dimen name="size_200">200dp</dimen>
+    <dimen name="size_250">250dp</dimen>
+
+    <dimen name="text_size_18">14sp</dimen>
+    <dimen name="main_padding">@dimen/size_8</dimen>
+    <dimen name="text_margin">@dimen/size_16</dimen>
+    <dimen name="cardview_corner">@dimen/size_8</dimen>
+    <dimen name="toast_text_size">@dimen/text_size_18</dimen>
+    <dimen name="switch_button_size">@dimen/size_30</dimen>
+
+    <dimen name="nav_header_height">@dimen/size_200</dimen>
+    <dimen name="zoo_area_item_height">@dimen/size_150</dimen>
+    <dimen name="zoo_area_item_padding">@dimen/size_8</dimen>
+    <dimen name="zoo_area_square_iv_length">@dimen/size_150</dimen>
+
+    <dimen name="area_plant_item_height">@dimen/size_150</dimen>
+    <dimen name="area_plant_item_padding">@dimen/size_8</dimen>
+    <dimen name="area_plant_square_iv_length">@dimen/size_150</dimen>
+    <dimen name="area_plant_appbar_height">@dimen/size_250</dimen>
+    <dimen name="area_plant_title_list_margin">@dimen/size_18</dimen>
+
+</resources>

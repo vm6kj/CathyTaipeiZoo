@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="zooArea"
+            type="com.kc_hsu.cathaytpezoo.data.responsebody.ZooAreaResponseBody.Result.ResultItem" />
+
+        <variable
+            name="clickListener"
+            type="com.kc_hsu.cathaytpezoo.ui.TpeZooClickListener" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zoo_area_item_height"
+        android:onClick="@{() -> clickListener.onListItemClicked(zooArea)}"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="8dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="8dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="8dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="8dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glIvTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="148dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glTvArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="32dp" />
+
+        <ImageView
+            android:id="@+id/iv_main_photo"
+            android:layout_width="134dp"
+            android:layout_height="134dp"
+            android:contentDescription="@string/zoo_area_item_iv_content_dsc"
+            android:scaleType="centerCrop"
+            app:error="@{@drawable/ic_animal}"
+            app:imageUrl="@{zooArea.ePicURL}"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
+            app:placeholder="@{@drawable/ic_animal}" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@{zooArea.eName, default=@string/zoo_area_title_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintRight_toLeftOf="@+id/glTvArrow"
+            app:layout_constraintStart_toEndOf="@+id/glIvTv"
+            app:layout_constraintTop_toBottomOf="@+id/guidelineTop" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_info_peek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginTop="@dimen/size_8"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{zooArea.eInfo, default=@string/zoo_area_info_peek_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toStartOf="@+id/glTvArrow"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/glIvTv"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_closed_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_close_date"
+            android:drawableLeft="@drawable/ic_close_date"
+            android:drawablePadding="@dimen/size_8"
+            android:text="@{TextUtils.isEmpty(zooArea.eMemo) ? @string/zoo_area_closed_info_default : zooArea.eMemo, default=@string/zoo_area_closed_info_default}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintStart_toEndOf="@+id/glIvTv"
+            app:layout_constraintTop_toBottomOf="@+id/tv_info_peek"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/arrow_content_dsc"
+            android:src="@drawable/arrow_indicator"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+            app:layout_constraintStart_toEndOf="@+id/glTvArrow"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

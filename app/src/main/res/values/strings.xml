@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Cathay Taipei Zoo</string>
+
+    <string name="zoo_area_title_default">Zoo Area Name</string>
+    <string name="zoo_area_info_peek_default">Info Peek</string>
+    <string name="zoo_area_info_default">Info</string>
+    <string name="zoo_area_closed_info_default">Not provided</string>
+    <string name="zoo_area_category_default" translatable="false">--</string>
+    <string name="zoo_area_url_default" translatable="false">https://www.zoo.gov.tw/</string>
+    <string name="zoo_area_item_iv_content_dsc">Image of Zoo Area</string>
+
+    <string name="area_plant_title_default">Plant Name</string>
+    <string name="area_plant_title_en_default">English name</string>
+    <string name="area_plant_aka_default">Also Known As</string>
+    <string name="area_plant_list_title">Plants Information</string>
+
+    <string name="plant_detail_intro_title">Plants Introduction</string>
+    <string name="plant_detail_aka">Also know as</string>
+    <string name="plant_detail_aka_default">Also know as content</string>
+    <string name="plant_detail_intro">Introduction</string>
+    <string name="plant_detail_intro_default">Introduction content</string>
+    <string name="plant_detail_recognition">Recognition</string>
+    <string name="plant_detail_recognition_default">Recognition content</string>
+    <string name="plant_detail_functionality">Functionality</string>
+    <string name="plant_detail_functionality_default">Functionality content</string>
+    <string name="plant_detail_last_update">Last Updated: </string>
+    <string name="plant_detail_last_update_default">Not provided</string>
+
+    <!--  DrawerLayout  -->
+    <string name="drawer_menu_theme">Theme</string>
+
+    <!--  Generic  -->
+    <string name="theme_switch">Switch</string>
+    <string name="theme_light_mode">Theme: Light</string>
+    <string name="theme_dark_mode">Theme: Dark</string>
+    <string name="open_drawer" translatable="false">Open drawer</string>
+    <string name="close_drawer" translatable="false">Close drawer</string>
+    <string name="arrow_content_dsc" translatable="false">Arrow to the next page</string>
+    <string name="pb_loading">Loading…</string>
+    <string name="error_network_fail">Please check your internet connection and try again</string>
+    <string name="custom_toast_default_message" translatable="false">Message</string>
+    <string name="iv_renew_content_dsc" translatable="false">Image of no signal</string>
+    <string name="retry">Retry</string>
+    <string name="browse">Browse…</string>
+</resources>

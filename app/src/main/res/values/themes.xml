@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.CathayTaipeiZoo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryVariant">@color/teal_700</item>
+        <item name="colorOnPrimary">@color/tpe_zoo_white</item>
+        <item name="colorSurface">@color/tpe_zoo_white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="snackbarStyle">@style/TpeZooSnackBarStyle</item>
+    </style>
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />
+
+    <style name="TpeZooSnackBarStyle" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:background">@color/sb_background_color_light</item>
+    </style>
+
+    <style name="TpeZooSwitchThemeButton">
+        <item name="cornerRadius">@dimen/size_8</item>
+        <item name="android:layout_height">@dimen/switch_button_size</item>
+        <item name="android:layout_weight">@dimen/switch_button_size</item>
+        <item name="backgroundTint">@color/teal_500</item>
+    </style>
+</resources>
