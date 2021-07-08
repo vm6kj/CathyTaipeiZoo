@@ -18,6 +18,7 @@
         android:layout_height="@dimen/area_plant_item_height"
         android:onClick="@{() -> clickListener.onListItemClicked(areaPlant)}"
         android:padding="@dimen/area_plant_item_padding"
+        android:layout_marginTop="@dimen/area_plant_title_list_item_margin"
         app:cardCornerRadius="@dimen/cardview_corner">
 
         <RelativeLayout
@@ -28,7 +29,6 @@
                 android:id="@+id/iv_main_photo"
                 android:layout_width="@dimen/area_plant_square_iv_length"
                 android:layout_height="@dimen/area_plant_square_iv_length"
-                android:padding="@dimen/area_plant_item_padding"
                 android:scaleType="centerCrop"
                 app:error="@{@drawable/ic_flower}"
                 app:imageUrl="@{areaPlant.fPic01URL}"
@@ -42,9 +42,11 @@
                 android:layout_toLeftOf="@+id/iv_arrow"
                 android:layout_toEndOf="@+id/iv_main_photo"
                 android:layout_toRightOf="@+id/iv_arrow"
+                android:layout_marginStart="@dimen/area_plant_title_list_item_margin"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@{areaPlant.FNameCh, default=@string/area_plant_title_default}"
+                android:layout_marginLeft="@dimen/area_plant_title_list_item_margin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -59,7 +61,9 @@
                 android:layout_toRightOf="@+id/iv_arrow"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:layout_marginStart="@dimen/area_plant_title_list_item_margin"
                 android:text="@{areaPlant.fAlsoKnown, default=@string/area_plant_aka_default}"
+                android:layout_marginLeft="@dimen/area_plant_title_list_item_margin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <ImageView
