@@ -43,4 +43,8 @@
     <string name="iv_renew_content_dsc" translatable="false">Image of no signal</string>
     <string name="retry">Retry</string>
     <string name="browse">Browse…</string>
+    <string name="network_exception">Network Exception: %s</string>
+    <string name="unsafe_conn_dialog_title">Beware</string>
+    <string name="unsafe_conn_dialog_message">The server security certificate expired, please check your system\'s clock. And try it again</string>
+    <string name="unsafe_conn_dialog_positive_btn">Continue to connect (unsafe)</string>
 </resources>

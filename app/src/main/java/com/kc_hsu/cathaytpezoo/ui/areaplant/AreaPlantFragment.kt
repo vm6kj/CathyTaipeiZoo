@@ -48,13 +48,14 @@ class AreaPlantFragment : BaseFragment<AreaPlantFragmentBinding>(), AreaPlantCon
 
         arguments?.get(ARGUMENT_ZOO_AREA)?.apply {
             if (this is ZooAreaResponseBody.Result.ResultItem) {
-                presenter = AreaPlantPresenter(this)
+                presenter = AreaPlantPresenter(this@AreaPlantFragment, this)
             } else {
                 Timber.e(IllegalArgumentException(), "Failed to get the item zoo area")
             }
         }
 
-        presenter.subscribeWithView(this)
+        presenter.subscribe(this)
+
         binding.areaPlantListLayout.retryViewLayout.cvRetry.setOnClickListener {
             presenter.loadAreaPlant()
         }

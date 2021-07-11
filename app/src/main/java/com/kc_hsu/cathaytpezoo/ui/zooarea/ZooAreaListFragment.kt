@@ -33,7 +33,7 @@ class ZooAreaListFragment : BaseFragment<ZooAreaItemListFragmentBinding>(), ZooA
 
     override fun getLayoutId() = R.layout.zoo_area_item_list_fragment
 
-    private val presenter by lazy { ZooAreaPresenter(requireContext()) }
+    private val presenter by lazy { ZooAreaPresenter(this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,7 +42,7 @@ class ZooAreaListFragment : BaseFragment<ZooAreaItemListFragmentBinding>(), ZooA
             setDisplayHomeAsUpEnabled(true)
         }
 
-        presenter.subscribeWithView(this)
+        presenter.subscribe(this)
         binding.retryViewLayout.cvRetry.setOnClickListener {
             presenter.loadZooArea()
         }

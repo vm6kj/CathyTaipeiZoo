@@ -1,6 +1,7 @@
 package com.kc_hsu.cathaytpezoo.data
 
 import com.google.gson.GsonBuilder
+import com.kc_hsu.cathaytpezoo.utils.UnsafeOkHttpClient
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,19 +27,12 @@ object TpeZooApiClient {
         })
         logger.level = HttpLoggingInterceptor.Level.BASIC
 
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(logger)
-            .readTimeout(10, TimeUnit.SECONDS)
-            .connectTimeout(10, TimeUnit.SECONDS)
-            .retryOnConnectionFailure(true)
-            .build()
-
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL.toHttpUrlOrNull()!!)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(okHttpClient)
+            .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
             .build()
 
         return retrofit.create(TpeZooApi::class.java)

@@ -1,8 +1,10 @@
 package com.kc_hsu.cathaytpezoo.ui
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import com.google.android.material.button.MaterialButton
@@ -23,6 +25,8 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
 
     private lateinit var exceptionHandler: ExceptionHandler
     private var exceptionHandlerDisposable: Disposable? = null
+    private var unsafeConnConfirmDialogDisposable: Disposable? = null
+    private var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +53,7 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
     }
 
     private fun initNavHeader(menuItem: MenuItem, ivNavHeader: ImageView) {
-        val currentTheme = UserPreferences.getTheme(this)
+        val currentTheme = UserPreferences.getTheme()
         if (AppCompatDelegate.MODE_NIGHT_YES == currentTheme) {
             setTheme(AppCompatDelegate.MODE_NIGHT_YES, ivNavHeader, menuItem)
         } else {
@@ -66,18 +70,18 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
             ivNavHeader.setImageResource(R.drawable.tpe_zoo_logo_dark)
             menuItem.title = getString(R.string.theme_dark_mode)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            UserPreferences.setTheme(this, AppCompatDelegate.MODE_NIGHT_YES)
+            UserPreferences.setTheme(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             ivNavHeader.setImageResource(R.drawable.tpe_zoo_logo_light)
             menuItem.title = getString(R.string.theme_light_mode)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            UserPreferences.setTheme(this, AppCompatDelegate.MODE_NIGHT_NO)
+            UserPreferences.setTheme(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 
     private fun switchTheme(menuItem: MenuItem, ivNavHeader: ImageView) {
 
-        val currentNightMode = UserPreferences.getTheme(this)
+        val currentNightMode = UserPreferences.getTheme()
         if (AppCompatDelegate.MODE_NIGHT_YES == currentNightMode) {
             Timber.d("MODE_NIGHT_YES, currentNightMode: $currentNightMode")
             setTheme(AppCompatDelegate.MODE_NIGHT_NO, ivNavHeader, menuItem)
@@ -89,19 +93,21 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
 
     override fun onStart() {
         super.onStart()
-        if (null == exceptionHandlerDisposable || false == exceptionHandlerDisposable?.isDisposed) {
-            exceptionHandlerDisposable = exceptionHandler.errorMessageToDisplay
-                .filter { it.isNotBlank() }
-                .throttleFirst(2, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { handleErrorMessage(it) }
-                .subscribe()
-        }
+        exceptionHandlerSetup()
     }
 
-    override fun onStop() {
-        exceptionHandlerDisposable?.dispose()
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
+        // There's never a guarantee that onDestroy() will be called, so it had better to be moving
+        // to onStop. `BUT` when moving to onStop, we need to take more effort to handle the problem
+        // that lifecycle lead to.
+        // I think that using a 3rd party library or creating a helper class to handle it is better.
+        disposeExceptionHandler()
+
+        // Not a common usage, it's just for demonstrating that I handle exception of certificate
+        // expired. So setting it to false again to make sure that the checkValidity() would be
+        // calling.
+        UserPreferences.setUserAllowUnsafeConn(false)
     }
 
     override fun handleErrorMessage(message: String) {
@@ -123,5 +129,49 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
         if (message.isNotEmpty()) {
             Snackbar.make(binding.clSnackbarview, message, Snackbar.LENGTH_SHORT).show()
         }
+    }
+
+    private fun showUnsafeConnDialog() {
+        if (dialog != null && dialog!!.isShowing) {
+            Timber.d("dialog != null && dialog!!.isShowing")
+            return
+        }
+        dialog = AlertDialog.Builder(this)
+            .setTitle(R.string.unsafe_conn_dialog_title)
+            .setMessage(R.string.unsafe_conn_dialog_message)
+            .setPositiveButton(R.string.unsafe_conn_dialog_positive_btn) { dialog, which ->
+                UserPreferences.setUserAllowUnsafeConn(true)
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, which ->
+                dialog.dismiss()
+            }
+            .create()
+
+        dialog!!.show()
+    }
+
+    private fun exceptionHandlerSetup() {
+        if (null == exceptionHandlerDisposable || false == exceptionHandlerDisposable?.isDisposed) {
+            exceptionHandlerDisposable = exceptionHandler.errorMessageToDisplay
+                .filter { it.isNotBlank() }
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext { handleErrorMessage(it) }
+                .subscribe()
+        }
+
+        if (null == unsafeConnConfirmDialogDisposable || false == unsafeConnConfirmDialogDisposable?.isDisposed) {
+            unsafeConnConfirmDialogDisposable = exceptionHandler.shouldShowUnsafeConnConfirmDialog
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext { showUnsafeConnDialog() }
+                .subscribe()
+        }
+    }
+
+    private fun disposeExceptionHandler() {
+        exceptionHandlerDisposable?.dispose()
+        unsafeConnConfirmDialogDisposable?.dispose()
     }
 }

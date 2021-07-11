@@ -6,12 +6,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class AreaPlantPresenter(private val zooAreaItem: ZooAreaResponseBody.Result.ResultItem) :
+class AreaPlantPresenter(
+    private val areaPlantView: AreaPlantContract.View,
+    private val zooAreaItem: ZooAreaResponseBody.Result.ResultItem
+) :
     AreaPlantContract.Presenter {
     private val tpeZooRepository = TpeZooRepositoryProvider.provide()
     private val disposables = CompositeDisposable()
-
-    private lateinit var areaPlantView: AreaPlantContract.View
 
     override fun loadAreaPlant() {
         areaPlantView.showZooAreaDetailInfo(zooAreaItem)
@@ -33,8 +34,7 @@ class AreaPlantPresenter(private val zooAreaItem: ZooAreaResponseBody.Result.Res
         disposables.add(disposable)
     }
 
-    override fun subscribeWithView(view: AreaPlantContract.View) {
-        areaPlantView = view
+    override fun subscribe(view: AreaPlantContract.View) {
         loadAreaPlant()
     }
 
