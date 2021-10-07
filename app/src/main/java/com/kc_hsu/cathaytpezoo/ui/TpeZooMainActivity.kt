@@ -26,7 +26,7 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
     private lateinit var exceptionHandler: ExceptionHandler
     private var exceptionHandlerDisposable: Disposable? = null
     private var unsafeConnConfirmDialogDisposable: Disposable? = null
-    private var dialog: Dialog? = null
+    private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,7 +101,7 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
         // There's never a guarantee that onDestroy() will be called, so it had better to be moving
         // to onStop. `BUT` when moving to onStop, we need to take more effort to handle the problem
         // that lifecycle lead to.
-        // I think that using a 3rd party library or creating a helper class to handle it is better.
+        // Maybe using a 3rd party library or creating a helper class to handle it is better.
         disposeExceptionHandler()
 
         // Not a common usage, it's just for demonstrating that I handle exception of certificate
@@ -132,8 +132,7 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
     }
 
     private fun showUnsafeConnDialog() {
-        if (dialog != null && dialog!!.isShowing) {
-            Timber.d("dialog != null && dialog!!.isShowing")
+        if (::dialog.isInitialized && dialog.isShowing) {
             return
         }
         dialog = AlertDialog.Builder(this)
@@ -148,7 +147,7 @@ class TpeZooMainActivity : BaseActivity<TpeZooMainActivityBinding>() {
             }
             .create()
 
-        dialog!!.show()
+        dialog.show()
     }
 
     private fun exceptionHandlerSetup() {

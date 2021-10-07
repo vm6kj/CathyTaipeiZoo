@@ -1,7 +1,7 @@
 package com.kc_hsu.cathaytpezoo.ui.areaplant
 
-import com.kc_hsu.cathaytpezoo.data.TpeZooRepositoryProvider
 import com.kc_hsu.cathaytpezoo.data.responsebody.ZooAreaResponseBody
+import com.kc_hsu.cathaytpezoo.data.source.TpeZooRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -9,14 +9,12 @@ import io.reactivex.schedulers.Schedulers
 class AreaPlantPresenter(
     private val areaPlantView: AreaPlantContract.View,
     private val zooAreaItem: ZooAreaResponseBody.Result.ResultItem
-) :
-    AreaPlantContract.Presenter {
-    private val tpeZooRepository = TpeZooRepositoryProvider.provide()
+) : AreaPlantContract.Presenter {
     private val disposables = CompositeDisposable()
 
     override fun loadAreaPlant() {
         areaPlantView.showZooAreaDetailInfo(zooAreaItem)
-        val disposable = tpeZooRepository.loadPlantByArea(zooAreaItem.eName)
+        val disposable = TpeZooRepository.loadPlantByArea(zooAreaItem.eName)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {

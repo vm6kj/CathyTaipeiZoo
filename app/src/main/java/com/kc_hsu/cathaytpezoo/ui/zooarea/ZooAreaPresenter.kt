@@ -1,17 +1,16 @@
 package com.kc_hsu.cathaytpezoo.ui.zooarea
 
-import com.kc_hsu.cathaytpezoo.data.TpeZooRepositoryProvider
+import com.kc_hsu.cathaytpezoo.data.source.TpeZooRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class ZooAreaPresenter(private val zooAreaView: ZooAreaContract.View) : ZooAreaContract.Presenter {
 
-    private val tpeZooRepository = TpeZooRepositoryProvider.provide()
     private val disposables = CompositeDisposable()
 
     override fun loadZooArea() {
-        val disposable = tpeZooRepository.loadZooAreaData()
+        val disposable = TpeZooRepository.loadZooAreaData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {

@@ -5,9 +5,10 @@ import com.kc_hsu.cathaytpezoo.data.responsebody.ZooAreaResponseBody
 import com.kc_hsu.cathaytpezoo.data.source.remote.TpeZooRemoteDataSource
 import io.reactivex.Single
 
-// TODO TpeZooLocalDataSource
-class TpeZooRepository(private val tpeZooRemoteDataSource: TpeZooRemoteDataSource) :
-    TpeZooDataSource {
+object TpeZooRepository : TpeZooDataSource {
+
+    // TODO Add some logic to fetch data from TpeZooLocalDataSource as well.
+    private val tpeZooRemoteDataSource = TpeZooRemoteDataSource
 
     override fun loadZooAreaData(): Single<List<ZooAreaResponseBody.Result.ResultItem>> {
         return tpeZooRemoteDataSource.loadZooAreaData()

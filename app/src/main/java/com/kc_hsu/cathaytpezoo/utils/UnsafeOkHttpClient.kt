@@ -12,7 +12,6 @@ import javax.net.ssl.X509TrustManager
 
 // reference: https://futurestud.io/tutorials/retrofit-2-how-to-trust-unsafe-ssl-certificates-self-signed-expired
 object UnsafeOkHttpClient {
-    @JvmStatic
     fun getUnsafeOkHttpClient(): OkHttpClient {
         try {
             val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {

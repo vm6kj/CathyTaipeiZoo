@@ -34,22 +34,24 @@ object BindingAdapter {
     @JvmStatic
     @BindingAdapter("hyperLink")
     fun bindHyperLink(textView: TextView, url: String?) {
-        if (url != null) {
-            val builder = SpannableStringBuilder(textView.context.getString(R.string.browse))
-            builder.setSpan(object : ClickableSpan() {
-                override fun onClick(widget: View) {
-                    val context = TpeZooApplication.applicationContext()
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    context.startActivity(intent)
-                }
-            }, 0, builder.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        with(textView) {
+            url?.let {
+                val builder = SpannableStringBuilder(context.getString(R.string.browse))
+                builder.setSpan(object : ClickableSpan() {
+                    override fun onClick(widget: View) {
+                        val context = TpeZooApplication.applicationContext()
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        context.startActivity(intent)
+                    }
+                }, 0, builder.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-            textView.text = builder
-            textView.movementMethod = LinkMovementMethod.getInstance()
-            textView.removeLinksUnderline()
-        } else {
-            textView.text = ""
+                text = builder
+                movementMethod = LinkMovementMethod.getInstance()
+                removeLinksUnderline()
+            } ?: {
+                text = ""
+            }
         }
     }
 }

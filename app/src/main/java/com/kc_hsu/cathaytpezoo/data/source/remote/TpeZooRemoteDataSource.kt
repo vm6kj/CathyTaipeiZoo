@@ -7,21 +7,7 @@ import com.kc_hsu.cathaytpezoo.data.source.TpeZooDataSource
 import io.reactivex.Single
 
 // TODO TpeZooLocalDataSource
-class TpeZooRemoteDataSource : TpeZooDataSource {
-
-    companion object {
-        private var INSTANCE: TpeZooRemoteDataSource? = null
-
-        @JvmStatic
-        fun getInstance(): TpeZooRemoteDataSource {
-            if (INSTANCE == null) {
-                synchronized(TpeZooRemoteDataSource::javaClass) {
-                    INSTANCE = TpeZooRemoteDataSource()
-                }
-            }
-            return INSTANCE!!
-        }
-    }
+object TpeZooRemoteDataSource : TpeZooDataSource {
 
     private val tpeZooApi = TpeZooApiClient.getApiClient()
 
